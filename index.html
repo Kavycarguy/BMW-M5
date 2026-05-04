@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW Series Information</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f4f4; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        h1 { color: #1c69d4; }
+        .container { display: flex; gap: 20px; max-width: 900px; width: 100%; }
+        
+        /* List of Cars */
+        .car-list { flex: 1; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .car-item { padding: 12px; border-bottom: 1px solid #eee; cursor: pointer; transition: 0.3s; font-weight: bold; }
+        .car-item:hover { background: #e7f0ff; color: #1c69d4; }
+        
+        /* Information Display */
+        .details-panel { flex: 1.5; background: #1c69d4; color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .details-panel h2 { margin-top: 0; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 10px; }
+        .spec { margin: 10px 0; font-size: 1.1em; }
+        .spec span { font-weight: bold; color: #ffd700; }
+    </style>
+</head>
+<body>
+
+    <h1>BMW Model Guide</h1>
+    <p>Click a car name to see full technical details.</p>
+
+    <div class="container">
+        <!-- Sidebar with car names -->
+        <div class="car-list">
+            <div class="car-item" onclick="showCar('5 Series')">BMW 5 Series (2026)</div>
+            <div class="car-item" onclick="showCar('3 Series')">BMW 3 Series</div>
+            <div class="car-item" onclick="showCar('iX')">BMW iX (Electric)</div>
+            <div class="car-item" onclick="showCar('7 Series')">BMW 7 Series</div>
+            <div class="car-item" onclick="showCar('X5')">BMW X5 SUV</div>
+        </div>
+
+        <!-- Detail display area -->
+        <div class="details-panel" id="details-box">
+            <h2 id="car-name">Select a Car</h2>
+            <div id="car-content">
+                <p>Please click a car from the list on the left to see its specifications.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Database of car knowledge
+        const carData = {
+            "5 Series": {
+                engine: "2.0L Turbo I-4 / 3.0L Inline-6",
+                power: "255 - 375 Horsepower",
+                topSpeed: "155 mph (Limited)",
+                tech: "14.9-inch Infotainment Touchscreen, iDrive 8.5, Curved Display."
+            },
+            "3 Series": {
+                engine: "2.0L TwinPower Turbo",
+                power: "255 Horsepower",
+                topSpeed: "130 mph",
+                tech: "Dynamic Stability Control, Apple CarPlay & Android Auto."
+            },
+            "iX": {
+                engine: "Dual Electric Motors (All-Wheel Drive)",
+                power: "536 Horsepower",
+                topSpeed: "124 mph",
+                tech: "Up to 340 miles range, DC Fast Charging (10-80% in 35 mins)."
+            },
+            "7 Series": {
+                engine: "3.0L I-6 or 4.4L V-8 BMW M TwinPower",
+                power: "375 - 536 Horsepower",
+                topSpeed: "155 mph",
+                tech: "31-inch BMW Theater Screen for rear passengers, Swarovski Crystal Headlights."
+            },
+            "X5": {
+                engine: "3.0L Turbo Inline-6 / 4.4L V-8",
+                power: "375 - 523 Horsepower",
+                topSpeed: "130 mph",
+                tech: "Standard Panoramic Moonroof, Parking Assistant Professional."
+            }
+        };
+
+        function showCar(name) {
+            const car = carData[name];
+            document.getElementById('car-name').innerText = name;
+            document.getElementById('car-content').innerHTML = `
+                <div class="spec"><span>Engine:</span> ${car.engine}</div>
+                <div class="spec"><span>Power:</span> ${car.power}</div>
+                <div class="spec"><span>Top Speed:</span> ${car.topSpeed}</div>
+                <div class="spec"><span>Key Features:</span> ${car.tech}</div>
+            `;
+        }
+    </script>
+</body>
+</html>
